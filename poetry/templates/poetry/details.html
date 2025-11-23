@@ -1,0 +1,23 @@
+{% extends 'poetry/base.html' %}
+{% block title %}{{ poem.title }} — কবিতার বাগান{% endblock %}
+
+{% block content %}
+<section class="py-10">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <h1 class="text-3xl font-bold text-rose-800 mb-4">{{ poem.title }}</h1>
+    <p class="text-sm text-gray-500 mb-6">লেখক: {{ poem.author }} • {{ poem.created_at|date:"F j, Y" }}</p>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+      <div class="prose">
+        {{ poem.content|linebreaks }}
+      </div>
+
+      <div class="mt-6 flex items-center space-x-4">
+        <button id="likeBtn" data-slug="{{ poem.slug }}" class="bg-rose-600 text-white px-3 py-2 rounded">
+          Like (<span id="likeCount">{{ poem.like_count }}</span>)
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
